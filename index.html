@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Always look on the bright side of life</title>
+</head>
+
+
+<body>
+  
+  <style>
+    body {
+      display: grid;
+      background: url(assets/meadow.jpg);
+    }
+
+  h1{
+    color: rgb(194, 23, 88);
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+  }
+
+  h3{
+    color: rgb(194, 23, 88);
+    text-align: center;
+  }
+
+  .reColor {
+  background-color: rgb(209, 178, 196);
+  animation-name: example;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0%   {background-color:rgb(209, 178, 196);}
+  10%  {background-color: rgb(178, 99, 214);}
+  20%  {background-color:rgb(99, 101, 214);}
+  30%  {background-color: rgb(29, 57, 185);}
+  40%  {background-color: rgb(29, 161, 185);}
+  50%  {background-color: rgb(75, 231, 122);}
+  60%  {background-color: rgb(65, 233, 36);}
+  70%  {background-color: rgb(197, 233, 36);}
+  80%  {background-color: rgb(243, 227, 10);}
+  90%  {background-color: rgb(238, 144, 56);}
+  100% {background-color: rgb(238, 62, 56);}
+}
+
+    .unicorn {
+      position: relative;
+      --x: 0;
+      --y: 0;
+      --rotateX: 0;
+      --rotate: 0;
+      transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotateX)) rotate(var(--rotate));
+      transition: transform 0.2s;
+    }
+  </style>
+  
+  <div class="reColor" id="change">
+    <h1>
+      <em>Always look on the bright side of life</em>
+    </h1>
+    <h3>
+      & press the arrow button
+    </h3>
+  </div>
+  
+      <img width="400" src="./assets/unicorn.png" alt="Uni" class="unicorn">
+   
+  <script>
+    const unicorn = document.querySelector('.unicorn');
+    let x = 0;
+    let y = 0;
+    const speed = 50;
+    let flipped = 'false';
+    let rotate = 0;
+    const div = document.querySelector('.reColor');
+
+    function handleKeyDown(event) {
+      // if it's not an arrow key, we do not care
+      if (!event.key.includes('Arrow')) return;
+      switch (event.key) {
+        case 'ArrowUp':
+          y -= 1;
+          rotate = -90;
+          break;
+        case 'ArrowDown':
+          y += 1;
+          rotate = 90;
+          break;
+        case 'ArrowLeft':
+          x -= 1;
+          flipped = true;
+          rotate = 0;
+          break;
+        case 'ArrowRight':
+          x += 1;
+          flipped = false;
+          rotate = 0;
+          break;
+        default:
+          console.log('That is not a valid move');
+          break;
+      }
+      unicorn.setAttribute(
+        'style',
+        `--rotateX: ${flipped ? '180deg' : '0'};
+        --x: ${x * speed}px;
+      --y: ${y * speed}px;
+      --rotate:${rotate}deg`
+      );
+    }
+    window.addEventListener('keydown', handleKeyDown);
+  </script>
+</body>
+
+</html>
