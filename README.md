@@ -1,2 +1,2 @@
 # running_unicorn
-My first JavaScript project.
+My first JavaScript mini-project inspired by "Beginner JavaScript" course by Wes Bos.  
